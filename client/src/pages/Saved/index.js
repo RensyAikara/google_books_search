@@ -9,7 +9,10 @@ class Saved extends Component {
 
     componentDidMount() {
         API.getallBooks()
-        .then(savedBooks => this.setState({ savedBooks: savedBooks }))
+        .then(savedBooks => {
+            console.log(savedBooks.data)
+            this.setState({ savedBooks: savedBooks.data})
+        })
         .catch(err => console.log(err)
         );
     }
@@ -18,7 +21,8 @@ class Saved extends Component {
         return(
             <div className="container" >
                 <h2>Saved Books</h2>
-                <SavedBooks books={this.state.savedBooks} />
+                {this.state.savedBooks.length ? ( <SavedBooks books={this.state.savedBooks} />) : (<h2>No books to display</h2>)}
+                {/* <SavedBooks books={this.state.savedBooks} /> */}
             </div>
         )
     }

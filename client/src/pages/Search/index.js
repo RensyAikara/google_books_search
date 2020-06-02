@@ -45,6 +45,14 @@ class Search extends Component {
         event.preventDefault();
         this.bookSearch(this.state.search);
     };
+    handleSaveBook = (bookdata) => {
+        // event.preventDefault();
+        API.saveBook(bookdata).then(success => {
+            console.log("success");
+            
+            window.location.reload();
+        })
+    }
 
     render() {
         return (
@@ -57,7 +65,7 @@ class Search extends Component {
                         search={this.state.search}
                     />
                     <h2>Results</h2>
-                    <SearchResults books={this.state.books} />
+                    <SearchResults books={this.state.books} handleSaveBook={this.handleSaveBook} />
                 </Container>
             </div>
         )
