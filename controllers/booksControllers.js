@@ -15,8 +15,19 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: function(req, res) {
+    console.log(req.body);
+    let {title, authors, description, image, link, _id} = req.body
+    let newBook = {
+      title, 
+      authors: authors.join(", "),
+      description,
+      image,
+      link,
+      google_id: _id
+    }
+  
     db.Book
-      .create(req.body)
+      .create(newBook)
       .then(dbModel => res.json(dbModel))
       .catch(err => res.status(422).json(err));
   },

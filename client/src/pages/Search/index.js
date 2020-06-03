@@ -11,10 +11,6 @@ class Search extends Component {
         error: ""
     };
 
-    // componentDidMount(){
-    //     this.bookSearch();
-    // };
-
     bookSearch = query =>{
         console.log(query);
         
@@ -45,12 +41,13 @@ class Search extends Component {
         event.preventDefault();
         this.bookSearch(this.state.search);
     };
+
     handleSaveBook = (bookdata) => {
         // event.preventDefault();
-        API.saveBook(bookdata).then(success => {
-            console.log("success");
-            
-            window.location.reload();
+        console.log(bookdata);
+        API.savenewBook(bookdata).then(success => {
+            console.log(success);
+            // window.location.reload();
         })
     }
 
