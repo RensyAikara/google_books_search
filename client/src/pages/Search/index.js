@@ -3,12 +3,14 @@ import API from "../../utils/API";
 import SearchForm from "../../components/SearchForm";
 import SearchResults from "../../components/SearchResults";
 import Container from "../../components/Container";
+import { Redirect } from 'react-router-dom';
 
 class Search extends Component {
     state = {
         search: "",
         books: [],
-        error: ""
+        error: "",
+        redirectTo: null
     };
 
     bookSearch = query =>{
@@ -48,10 +50,16 @@ class Search extends Component {
         API.savenewBook(bookdata).then(success => {
             console.log(success);
             // window.location.reload();
+            this.setState({
+                redirectTo: '/saved'
+            })
         })
     }
 
     render() {
+        if (this.state.redirectTo) {
+            return <Redirect to={{ pathname: this.state.redirectTo }} />
+        } else {
         return (
             <div>
                 <Container style={{ minHeight: "80%" }}>
@@ -66,6 +74,7 @@ class Search extends Component {
                 </Container>
             </div>
         )
+        }
     }
 
 }

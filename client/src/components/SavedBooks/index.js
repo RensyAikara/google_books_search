@@ -6,40 +6,30 @@ function SavedBooks (props) {
     <div>
     {props.books.map(book => {
         return (
-          <div className="card" key={book._id}>
-            <h1>{book.title}</h1>
+          <div key={book._id} className="card">
+            {/* <h1>{book.title}</h1> */}
+            <div className="row" >
+                        <div className="col-md-2">
+                            <img alt={book.title} className="img-fluid" src={book.image} />
+                        </div>
+                        <div className="col-md-10">
+                            <div className="card-body">
+                                <h5 className="card-title">{book.title}</h5>
+                                <h6>{book.authors}</h6>
+                                <p className="card-text">{book.description}</p>
+                                <div>
+                                <a href={book.link} target="_blank" >View Book Details</a>
+                                <button onClick={() => props.removeSavedBook(book)}>Remove Book</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
           </div>
         );
       })}
       </div>
   )
 }
-// class SavedBooks extends Component {
-
-//     state = {
-//         savedBooks: [],
-//     }
-
-//     componentDidMount() {
-//         API.getallBooks()
-//             .then(savedBooks => this.setState({ savedBooks: savedBooks }))
-//             .catch(err => console.error(err));
-//     }
-
-// render(){
-//     return (
-//         // <h1>Hello</h1>
-//         <div>
-//         {this.state.savedBooks.map(book => {
-//             return (
-//               <div className="card" key={book._id}>
-//                 <h1>{book.title}</h1>
-//               </div>
-//             );
-//           })}
-//           </div>
-//     )
-// }
-// }
 
 export default SavedBooks;
